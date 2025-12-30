@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = "hidden"; 
     document.body.style.fontFamily = 'Impact, "Arial Black", sans-serif';
 
+    document.body.style.webkitTapHighlightColor = "transparent";
+    document.body.style.userSelect = "none";
+
     const WOOD_COLOR = "#c9a781"; 
     const frame = document.createElement('div');
     frame.style.display = "grid";
