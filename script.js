@@ -157,9 +157,9 @@ Object.assign(musicBtn.style, {
     position: "fixed",
     bottom: "20px",
     right: "20px",
-    width: "60px",
-    height: "60px",
-    backgroundColor: "#fed41d",
+    width: "65px",
+    height: "65px",
+    backgroundColor: "#fed41d", 
     border: "4px solid black",
     borderRadius: "50%",
     fontSize: "30px",
@@ -170,28 +170,37 @@ Object.assign(musicBtn.style, {
     justifyContent: "center",
     alignItems: "center",
     outline: "none",
-    transition: "transform 0.1s, box-shadow 0.1s"
+    webkitTapHighlightColor: "transparent",
+    userSelect: "none",
+    transition: "transform 0.1s"
 });
 
-musicBtn.onmousedown = () => {
-    musicBtn.style.transform = "translate(2px, 2px)";
-    musicBtn.style.boxShadow = "2px 2px 0px black";
-};
-musicBtn.onmouseup = () => {
-    musicBtn.style.transform = "translate(0px, 0px)";
-    musicBtn.style.boxShadow = "4px 4px 0px black";
-};
-
 let isPlaying = false;
-musicBtn.onclick = () => {
+
+const toggleMusic = () => {
     if (isPlaying) {
         audio.pause();
         musicBtn.style.backgroundColor = "#fed41d";
     } else {
-        audio.play().catch(e => console.log("Error al reproducir: ", e));
-        musicBtn.style.backgroundColor = "#ff9900";
+        audio.play()
+            .then(() => {
+                musicBtn.style.backgroundColor = "#ff9900";
+            })
+            .catch(error => {
+                console.error("Error al reproducir:", error);
+                alert("No se pudo cargar el audio. Verifica que el archivo esté en la carpeta 'files'");
+            });
     }
     isPlaying = !isPlaying;
 };
+
+musicBtn.addEventListener('click', toggleMusic);
+
+musicBtn.addEventListener('touchstart', () => {
+    musicBtn.style.transform = "scale(0.9) translate(2px, 2px)";
+});
+musicBtn.addEventListener('touchend', () => {
+    musicBtn.style.transform = "scale(1) translate(0px, 0px)";
+});
 
 document.body.appendChild(musicBtn);
