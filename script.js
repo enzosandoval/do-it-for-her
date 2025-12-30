@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.minHeight = "100vh";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden"; 
-    document.body.style.fontFamily = 'Impact, "Arial Black", sans-serif';
+    document.body.style.fontFamily = '"Comic Sans MS", "Comic Sans", cursive';
 
     const WOOD_COLOR = "#c9a781"; 
     const frame = document.createElement('div');
@@ -33,24 +33,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const textDiv = document.createElement('div');
     textDiv.style.position = "absolute";
-    textDiv.style.top = "0%"; 
+    textDiv.style.top = "10%"; 
     textDiv.style.width = "100%";
     textDiv.style.textAlign = "center";
     textDiv.style.fontWeight = "900"; 
     textDiv.style.color = "#2c1b05"; 
     textDiv.style.zIndex = "2"; 
-    textDiv.style.fontSize = "clamp(35px, 6.5vw, 70px)"; 
-    textDiv.style.lineHeight = "0.9"; 
-    textDiv.style.letterSpacing = "0.4em";
+
+    textDiv.style.fontSize = "clamp(15px, 6.5cqw, 70px)"; 
+    
+    textDiv.style.letterSpacing = "0.4em"; 
+    textDiv.style.lineHeight = "1.82"; 
+
     textDiv.style.textTransform = "uppercase"; 
-    textDiv.style.fontFamily = 'Impact, "Arial Black", sans-serif'; 
+    textDiv.style.fontFamily = '"Comic Sans MS", "Comic Sans", cursive'; 
+
+    textDiv.style.whiteSpace = "nowrap"; 
+    textDiv.style.display = "flex";
+    textDiv.style.flexDirection = "column";
+    textDiv.style.alignItems = "center";
 
     textDiv.innerHTML = `
-      <div style="margin-bottom: 0.1em;">DON’T FORGET:</div>
-      <div style="margin-bottom: 0.1em;">YOU’RE HERE</div>
-      <div>FOREVER</div>
+      <div style="margin-bottom: 0.2em;">DON’T FORGET:</div>
+      <div style="margin-bottom: 0.2em;">YOU’RE HERE</div>
+      <div>FOREVER.</div>
     `;
     poster.appendChild(textDiv);
+
+    poster.style.containerType = "size";
 
 
     const photos = [
