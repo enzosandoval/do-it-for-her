@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.minHeight = "100vh";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden"; 
-    document.body.style.fontFamily = '"Comic Sans MS", "Comic Sans", cursive';
+    document.body.style.fontFamily = 'Impact, "Arial Black", sans-serif';
 
     const WOOD_COLOR = "#c9a781"; 
     const frame = document.createElement('div');
@@ -40,13 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
     textDiv.style.color = "#2c1b05"; 
     textDiv.style.zIndex = "2"; 
 
-    textDiv.style.fontSize = "clamp(15px, 6.5cqw, 70px)"; 
+    textDiv.style.fontSize = "clamp(15px, 7.7cqw, 70px)"; 
     
-    textDiv.style.letterSpacing = "0.4em"; 
-    textDiv.style.lineHeight = "1.82"; 
+    textDiv.style.letterSpacing = "0.42em"; 
+    textDiv.style.lineHeight = "1.5"; 
 
     textDiv.style.textTransform = "uppercase"; 
-    textDiv.style.fontFamily = '"Comic Sans MS", "Comic Sans", cursive'; 
+    textDiv.style.fontFamily = 'Impact, "Arial Black", sans-serif'; 
 
     textDiv.style.whiteSpace = "nowrap"; 
     textDiv.style.display = "flex";
@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
     textDiv.style.alignItems = "center";
 
     textDiv.innerHTML = `
-      <div style="margin-bottom: 0.2em;">DON’T FORGET:</div>
-      <div style="margin-bottom: 0.2em;">YOU’RE HERE</div>
+      <div style="margin-bottom: 0.4em;">DON’T FORGET:</div>
+      <div style="margin-bottom: 0.4em;">YOU’RE HERE</div>
       <div>FOREVER.</div>
     `;
     poster.appendChild(textDiv);
@@ -146,3 +146,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }, i * 400); 
     });
 });
+
+const audio = new Audio('files/この街.mp3');
+audio.loop = true;
+
+const musicBtn = document.createElement('button');
+musicBtn.innerHTML = '♫';
+
+Object.assign(musicBtn.style, {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    width: "60px",
+    height: "60px",
+    backgroundColor: "#fed41d",
+    border: "4px solid black",
+    borderRadius: "50%",
+    fontSize: "30px",
+    cursor: "pointer",
+    zIndex: "1000",
+    boxShadow: "4px 4px 0px black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    outline: "none",
+    transition: "transform 0.1s, box-shadow 0.1s"
+});
+
+musicBtn.onmousedown = () => {
+    musicBtn.style.transform = "translate(2px, 2px)";
+    musicBtn.style.boxShadow = "2px 2px 0px black";
+};
+musicBtn.onmouseup = () => {
+    musicBtn.style.transform = "translate(0px, 0px)";
+    musicBtn.style.boxShadow = "4px 4px 0px black";
+};
+
+let isPlaying = false;
+musicBtn.onclick = () => {
+    if (isPlaying) {
+        audio.pause();
+        musicBtn.style.backgroundColor = "#fed41d";
+    } else {
+        audio.play().catch(e => console.log("Error al reproducir: ", e));
+        musicBtn.style.backgroundColor = "#ff9900";
+    }
+    isPlaying = !isPlaying;
+};
+
+document.body.appendChild(musicBtn);
